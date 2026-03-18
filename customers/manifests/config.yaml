@@ -8,7 +8,7 @@ data:
   config.json: |-
     {
       "jumbotron": {
-        "backgroundImage": "",
+        "backgroundImage": "/ressources/header.png",
         "title": "ACME Customers Management",
         "detail": "F"
       },

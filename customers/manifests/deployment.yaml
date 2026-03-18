@@ -28,10 +28,15 @@ spec:
           volumeMounts:
           - name: simple-demo-webapp-config
             mountPath: /var/www/html/config
+          - name: ressources
+            mountPath: /var/www/html/ressources
       volumes:
         - name: simple-demo-webapp-config
           configMap:
             name: simple-demo-webapp-config
+        - name: ressources
+          configMap:
+            name: ressources
       restartPolicy: Always
   strategy:
     type: RollingUpdate
