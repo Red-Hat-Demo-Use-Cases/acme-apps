@@ -1,0 +1,84 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: acme-customers-dashboard
+  namespace: acme-customers
+  labels:
+    app: acme-customers-dashboard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      deployment: acme-customers-dashboard
+  template:
+    metadata:
+      labels:
+        deployment: acme-customers-dashboard
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+    spec:
+      containers:
+        - name: acme-customers-dashboard
+          image: 'quay.io/dovid/simple-demo-webapp:amd64-latest'
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - name: simple-demo-webapp-config
+            mountPath: /var/www/html/config
+      volumes:
+        - name: simple-demo-webapp-config
+          configMap:
+            name: simple-demo-webapp-config
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: acme-customers-dashboard
+  namespace: acme-customers
+  labels:
+    app: acme-customers-dashboard
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    deployment: acme-customers-dashboard
+
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: acme-customers-dashboard-route
+  namespace: acme-customers
+spec:
+  to:
+    kind: Service
+    name: acme-customers-dashboard
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+  wildcardPolicy: None
+
+
