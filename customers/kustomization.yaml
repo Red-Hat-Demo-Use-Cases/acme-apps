@@ -11,9 +11,11 @@ resources:
 
 configMapGenerator:
   - name: ressources-1
+    namespace: acme-customers
     behavior: create
     files:
     - ressources/header.png
     options:
       labels:
         type: generated
+
