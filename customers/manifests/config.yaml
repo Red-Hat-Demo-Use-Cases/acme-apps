@@ -37,6 +37,12 @@ data:
       }
     }
   custom.css: |-
+
+    body {
+      background: white;
+      color: #333;
+    }
+
     .blink {
       animation: blinker 2s linear infinite;
     }
