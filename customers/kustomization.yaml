@@ -11,5 +11,9 @@ resources:
 
 configMapGenerator:
   - name: ressources-1
+    behavior: create
     files:
     - ressources/header.png
+    options:
+      labels:
+        type: generated
