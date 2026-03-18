@@ -13,7 +13,7 @@ data:
         "detail": "Customers Management"
       },
       "menu": {
-        "title": "<img src='https://lh3.googleusercontent.com/gg-dl/AOI_d__f0CUzam01wNsHG0EAhwZTOGftBGQ5zBMy1qIHTjhrZzBhBSzveQbKbBInpObvOlRr9_d3b4zZtVLl9kurSEeBBocq1pkeyoUSjd4Y3QqWvWuyS9wxpRNPny1zY-lhZ_2CGFGa7NilFnLhwPJqXhTWyC2M1tGGn59lGxKfdrZ7mFNL4A=s1024-rj'>",
+        "title": "<script>document.documentElement.setAttribute('data-bs-theme', 'light');</script>",
         "items": [
           { "label": "Active Customers", "options": [ "active" ] },
           { "label": "Archive", "options": [ ]}
@@ -39,6 +39,11 @@ data:
   custom.css: |-
 
     body {
+      background: white;
+      color: #333;
+    }
+
+    table {
       background: white;
       color: #333;
     }
