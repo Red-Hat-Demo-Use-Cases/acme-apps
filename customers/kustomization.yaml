@@ -10,6 +10,6 @@ resources:
   - manifests/config.yaml
 
 configMapGenerator:
-  - name: ressources
+  - name: ressources-1
     files:
     - ressources/header.png
