@@ -76,6 +76,23 @@ metadata:
   name: acme-customers-dashboard-route
   namespace: acme-customers
 spec:
+  to:
+    kind: Service
+    name: acme-customers-dashboard
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+  wildcardPolicy: None
+
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: acme-customers-dashboard-route
+  namespace: acme-customers
+spec:
   host: acme-customers.openocean.dg-6036.com
   to:
     kind: Service
