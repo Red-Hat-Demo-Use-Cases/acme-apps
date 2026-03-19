@@ -76,6 +76,7 @@ metadata:
   name: acme-customers-dashboard-route
   namespace: acme-customers
 spec:
+  host: acme-customers.openocean.dg-6036.com
   to:
     kind: Service
     name: acme-customers-dashboard
