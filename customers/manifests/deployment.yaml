@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: acme-customers-dashboard
-          image: 'quay.io/dovid/simple-demo-webapp:amd64-latest'
+          image: 'quay.io/dovid/simple-demo-webapp:amd64-2.3000000000000003'
           ports:
             - containerPort: 8080
               protocol: TCP
