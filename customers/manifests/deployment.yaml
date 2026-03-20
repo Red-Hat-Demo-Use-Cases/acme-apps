@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: acme-customers-dashboard
-          image: 'quay.io/dovid/simple-demo-webapp:amd64-2.4'
+          image: 'quay.io/dovid/simple-demo-webapp:amd64-2.5'
 
           env:
           - name: CLUSTER_NAME
