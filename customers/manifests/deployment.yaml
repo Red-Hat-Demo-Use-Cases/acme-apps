@@ -23,10 +23,9 @@ spec:
           image: 'quay.io/dovid/simple-demo-webapp:amd64-2.4'
 
           env:
-          - name: DEMO_GREETING
+          - name: cname
             value: "{{name}}"
-          - name: DEMO_FAREWELL
-            value: "Such a sweet sorrow"
+
 
           ports:
             - containerPort: 8080
