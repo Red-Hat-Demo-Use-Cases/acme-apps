@@ -81,6 +81,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: acme-customers-dashboard-individual-route
   namespace: acme-customers
+  annotations:
+    haproxy.router.openshift.io/disable_keepalive: true
 spec:
   to:
     kind: Service
@@ -98,6 +100,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: acme-customers-dashboard-common-route
   namespace: acme-customers
+  annotations:
+    haproxy.router.openshift.io/disable_keepalive: true
 spec:
   host: acme-customers.openocean.dg-6036.com
   to:
