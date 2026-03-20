@@ -23,7 +23,7 @@ spec:
           image: 'quay.io/dovid/simple-demo-webapp:amd64-2.4'
 
           env:
-          - name: cname
+          - name: CLUSTER_NAME
             value: "{{name}}"
 
 
