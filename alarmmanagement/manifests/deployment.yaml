@@ -81,8 +81,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: acme-alarmmanagement-dashboard-individual-route
   namespace: acme-alarmmanagement
-  annotations:
-    haproxy.router.openshift.io/disable_keepalive: true
+  # annotations:
+  #   haproxy.router.openshift.io/disable_keepalive: true
 spec:
   to:
     kind: Service
@@ -100,8 +100,8 @@ apiVersion: route.openshift.io/v1
 metadata:
   name: acme-alarmmanagement-dashboard-common-route
   namespace: acme-alarmmanagement
-  annotations:
-    haproxy.router.openshift.io/disable_keepalive: true
+  # annotations:
+  #   haproxy.router.openshift.io/disable_keepalive: true
 spec:
   host: acme-alarmmanagement.openocean.dg-6036.com
   to:
