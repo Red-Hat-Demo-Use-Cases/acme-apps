@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 commonLabels:
-  app: acme-alarmmanagement-dashboard
+  app: acme-amg-dashboard
 
 resources:
   - manifests/namespace.yaml
@@ -11,7 +11,7 @@ resources:
 
 configMapGenerator:
   - name: ressources-1
-    namespace: acme-alarmmanagement
+    namespace: acme-amg
     behavior: create
     files:
     - ressources/header.png

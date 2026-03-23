@@ -2,24 +2,24 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: acme-alarmmanagement-dashboard
-  namespace: acme-alarmmanagement
+  name: acme-amg-dashboard
+  namespace: acme-amg
   labels:
-    app: acme-alarmmanagement-dashboard
+    app: acme-amg-dashboard
 spec:
   replicas: 2
   selector:
     matchLabels:
-      deployment: acme-alarmmanagement-dashboard
+      deployment: acme-amg-dashboard
   template:
     metadata:
       labels:
-        deployment: acme-alarmmanagement-dashboard
+        deployment: acme-amg-dashboard
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
     spec:
       containers:
-        - name: acme-alarmmanagement-dashboard
+        - name: acme-amg-dashboard
           image: 'quay.io/dovid/simple-demo-webapp:amd64-2.6'
 
           env:
@@ -56,10 +56,10 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: acme-alarmmanagement-dashboard
-  namespace: acme-alarmmanagement
+  name: acme-amg-dashboard
+  namespace: acme-amg
   labels:
-    app: acme-alarmmanagement-dashboard
+    app: acme-amg-dashboard
 spec:
   ipFamilies:
     - IPv4
@@ -73,21 +73,20 @@ spec:
   ipFamilyPolicy: SingleStack
   sessionAffinity: None
   selector:
-    deployment: acme-alarmmanagement-dashboard
+    deployment: acme-amg-dashboard
 
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: acme-alarmmanagement-dashboard-individual-route
-  namespace: acme-alarmmanagement
+  name: acme-amg-dashboard-individual-route
+  namespace: acme-amg
   # annotations:
   #   haproxy.router.openshift.io/disable_keepalive: true
 spec:
-  host: "acme-alarmmanagement.apps.{{name}}.homestead.littoral.dg-6036.com"
   to:
     kind: Service
-    name: acme-alarmmanagement-dashboard
+    name: acme-amg-dashboard
     weight: 100
   port:
     targetPort: 8080-tcp
@@ -99,15 +98,15 @@ spec:
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: acme-alarmmanagement-dashboard-common-route
-  namespace: acme-alarmmanagement
+  name: acme-amg-dashboard-common-route
+  namespace: acme-amg
   # annotations:
   #   haproxy.router.openshift.io/disable_keepalive: true
 spec:
-  host: acme-alarmmanagement.openocean.dg-6036.com
+  host: acme-amg.openocean.dg-6036.com
   to:
     kind: Service
-    name: acme-alarmmanagement-dashboard
+    name: acme-amg-dashboard
     weight: 100
   port:
     targetPort: 8080-tcp

@@ -2,7 +2,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: simple-demo-webapp-config
-  namespace: acme-alarmmanagement
+  namespace: acme-amg
 immutable: false
 data:
   config.json: |-
