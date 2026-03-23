@@ -61,6 +61,7 @@ metadata:
   labels:
     app: acme-alarmmanagement-dashboard
 spec:
+  host: "acme-alarmmanagement.apps.{{name}}.homestead.littoral.dg-6036.com"
   ipFamilies:
     - IPv4
   ports:
