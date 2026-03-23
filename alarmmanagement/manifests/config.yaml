@@ -1,0 +1,104 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: simple-demo-webapp-config
+  namespace: acme-alarmmanagement
+immutable: false
+data:
+  config.json: |-
+    {
+      "jumbotron": {
+        "backgroundImage": "/ressources/header.png",
+        "title": "ACME a fictive company at your service",
+        "detail": "ALARM MANAGEMENT"
+      },
+      "menu": {
+        "title": "<script>document.documentElement.setAttribute('data-bs-theme', 'light');</script>",
+        "items": [
+          { "label": "ACTIVES ALARMES", "options": [ "active" ] },
+          { "label": "Archive", "options": [ ]}
+        ]
+      },
+      "table": {
+        "header": [
+          "Alarm ID",
+          "TimeStamp",
+          "Priority",
+          "Name",
+          "Location"
+        ],
+        "data": [
+          [ "129189", "2026-03-26 07:10:09",  "<div class='text-center text-warning fw-bold'>WARNING</div>", "Main door of the server room has been open", "DC-2"],
+          [ "129190", "2026-03-26 07:12:19",  "<div class='text-center text-danger fw-bold'>HIGH</div>", "A/C Has been manually disabled", "DC-2"],
+          [ "129191", "2026-03-26 07:12:19",  "<div class='text-center text-info fw-bold'>INFO</div>", "Heartbeat for DC-1 has completed", "DC-1"],
+          [ "129192", "2026-03-26 07:18:29",  "<div class='text-center text-success fw-bold'>OK</div>", "A/C Has been manually enabled", "DC-1"],
+          [ "129193", "2026-03-26 07:20:15", "<div class='text-center text-info fw-bold'>INFO</div>", "UPS Battery self-test initiated", "DC-1" ],
+          [ "129194", "2026-03-26 07:22:45", "<div class='text-center text-warning fw-bold'>WARNING</div>", "Humidity levels in Row B exceeding 60%", "DC-2" ],
+          [ "129195", "2026-03-26 07:25:30", "<div class='text-center text-danger fw-bold'>CRITICAL</div>", "Water leak detected under raised floor - Sector 4", "DC-1" ],
+          [ "129196", "2026-03-26 07:30:12", "<div class='text-center text-success fw-bold'>OK</div>", "Biometric scanner calibrated and active", "DC-2" ],
+          [ "129197", "2026-03-26 07:35:00", "<div class='text-center text-info fw-bold'>INFO</div>", "Firmware update applied to PDU-09", "DC-1" ],
+          [ "129198", "2026-03-26 07:42:19", "<div class='text-center text-warning fw-bold'>WARNING</div>", "Unauthorized badge swipe attempt - External Gate", "DC-2" ],
+          [ "129199", "2026-03-26 07:50:55", "<div class='text-center text-danger fw-bold'>HIGH</div>", "Fire suppression system: Pressure low", "DC-1" ],
+          [ "129200", "2026-03-26 07:55:10", "<div class='text-center text-info fw-bold'>INFO</div>", "New asset tagged: Dell R750 - Rack A12", "DC-2" ],
+          [ "129201", "2026-03-26 08:02:44", "<div class='text-center text-success fw-bold'>OK</div>", "Backup generator sync-to-grid successful", "DC-1" ],
+          [ "129202", "2026-03-26 08:15:20", "<div class='text-center text-warning fw-bold'>WARNING</div>", "SSD Life Cycle: Drive 4 in SAN-01 reaching 90% wear", "DC-1" ],
+          [ "129203", "2026-03-26 08:22:11", "<div class='text-center text-danger fw-bold'>CRITICAL</div>", "Core Switch temperature critical: 85°C", "DC-2" ],
+          [ "129204", "2026-03-26 08:30:00", "<div class='text-center text-info fw-bold'>INFO</div>", "Scheduled maintenance window started", "DC-1" ],
+          [ "129205", "2026-03-26 08:45:33", "<div class='text-center text-warning fw-bold'>WARNING</div>", "Redundant power supply failure - Node 04", "DC-2" ],
+          [ "129206", "2026-03-26 09:01:19", "<div class='text-center text-success fw-bold'>OK</div>", "Humidity sensors back within normal parameters", "DC-2" ],
+          [ "129207", "2026-03-26 09:10:05", "<div class='text-center text-info fw-bold'>INFO</div>", "Physical security audit: Logs exported", "DC-1" ],
+          [ "129208", "2026-03-26 09:15:50", "<div class='text-center text-danger fw-bold'>HIGH</div>", "Network latency spike detected - Link DC1-to-DC2", "DC-1" ],
+          [ "129209", "2026-03-26 09:20:12", "<div class='text-center text-warning fw-bold'>WARNING</div>", "Rack door left ajar: Rack C-05", "DC-2" ],
+          [ "129210", "2026-03-26 09:45:00", "<div class='text-center text-success fw-bold'>OK</div>", "Scheduled maintenance window closed", "DC-1" ],
+          [ "129211", "2026-03-26 10:05:30", "<div class='text-center text-info fw-bold'>INFO</div>", "External visitor checked in: ISP Technician", "DC-2" ],
+          [ "129212", "2026-03-26 10:12:19", "<div class='text-center text-danger fw-bold'>CRITICAL</div>", "Intrusion detected: Rear Loading Dock motion sensor", "DC-1" ]
+        ]
+      }
+    }
+  custom.css: |-
+
+    body {
+      background: white;
+      color: #333;
+    }
+
+    table {
+      background: white;
+      color: #333;
+    }
+
+    .jumbotron {
+      color: white;
+    }
+
+    .blink {
+      animation: blinker 2s linear infinite;
+    }
+
+    @keyframes blinker {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .table-body {
+      /*font-family: "Courier New";*/
+      font-family: monospace;
+    }
+
+    td:nth-child(3),
+    th:nth-child(3) {
+      text-align: left;
+    }
+    td:nth-child(4),
+    th:nth-child(4) {
+      text-align: center;
+    }
+    td:nth-child(5),
+    th:nth-child(5) {
+      text-align: center;
+    }
+    td:nth-child(6),
+    th:nth-child(6) {
+      text-align: center;
+    }

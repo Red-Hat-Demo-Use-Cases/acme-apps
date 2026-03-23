@@ -1,0 +1,117 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: acme-alarmmanagement-dashboard
+  namespace: acme-alarmmanagement
+  labels:
+    app: acme-alarmmanagement-dashboard
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      deployment: acme-alarmmanagement-dashboard
+  template:
+    metadata:
+      labels:
+        deployment: acme-alarmmanagement-dashboard
+      annotations:
+        openshift.io/generated-by: OpenShiftNewApp
+    spec:
+      containers:
+        - name: acme-alarmmanagement-dashboard
+          image: 'quay.io/dovid/simple-demo-webapp:amd64-2.6'
+
+          env:
+          - name: CLUSTER_NAME
+            value: "{{name}}"
+
+
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+          - name: simple-demo-webapp-config
+            mountPath: /var/www/html/config
+          - name: ressources
+            mountPath: /var/www/html/ressources
+      volumes:
+        - name: simple-demo-webapp-config
+          configMap:
+            name: simple-demo-webapp-config
+        - name: ressources
+          configMap:
+            name: ressources-1
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: acme-alarmmanagement-dashboard
+  namespace: acme-alarmmanagement
+  labels:
+    app: acme-alarmmanagement-dashboard
+spec:
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+  internalTrafficPolicy: Cluster
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    deployment: acme-alarmmanagement-dashboard
+
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: acme-alarmmanagement-dashboard-individual-route
+  namespace: acme-alarmmanagement
+  annotations:
+    haproxy.router.openshift.io/disable_keepalive: true
+spec:
+  to:
+    kind: Service
+    name: acme-alarmmanagement-dashboard
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+  wildcardPolicy: None
+
+---
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: acme-alarmmanagement-dashboard-common-route
+  namespace: acme-alarmmanagement
+  annotations:
+    haproxy.router.openshift.io/disable_keepalive: true
+spec:
+  host: acme-alarmmanagement.openocean.dg-6036.com
+  to:
+    kind: Service
+    name: acme-alarmmanagement-dashboard
+    weight: 100
+  port:
+    targetPort: 8080-tcp
+  tls:
+    termination: edge
+  wildcardPolicy: None
+
+
