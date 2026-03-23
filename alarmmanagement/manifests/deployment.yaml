@@ -61,7 +61,6 @@ metadata:
   labels:
     app: acme-alarmmanagement-dashboard
 spec:
-  host: "acme-alarmmanagement.apps.{{name}}.homestead.littoral.dg-6036.com"
   ipFamilies:
     - IPv4
   ports:
@@ -85,6 +84,7 @@ metadata:
   # annotations:
   #   haproxy.router.openshift.io/disable_keepalive: true
 spec:
+  host: "acme-alarmmanagement.apps.{{name}}.homestead.littoral.dg-6036.com"
   to:
     kind: Service
     name: acme-alarmmanagement-dashboard
