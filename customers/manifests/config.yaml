@@ -49,6 +49,7 @@ data:
     }
 
     .jumbotron {
+      background-repeat: round;
       color: white;
     }
 
