@@ -38,9 +38,8 @@ spec:
             mountPath: /var/www/html/config
           - name: ressources
             mountPath: /var/www/html/ressources
-
           - name: app-data
-              mountPath: /var/www/html/data
+            mountPath: /var/www/html/data
 
       volumes:
         - name: simple-demo-webapp-config
@@ -49,7 +48,6 @@ spec:
         - name: ressources
           configMap:
             name: ressources-1
-
         - name: app-data
           persistentVolumeClaim:
             claimName: acme-shared-pvc
