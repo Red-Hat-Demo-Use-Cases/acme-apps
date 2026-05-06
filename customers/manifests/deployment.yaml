@@ -6,6 +6,8 @@ metadata:
   namespace: acme-customers
   labels:
     app: acme-customers-dashboard
+  annotations:
+    acme.com/cluster-name: "local-cluster"
 spec:
   replicas: 2
   selector:
@@ -20,7 +22,7 @@ spec:
     spec:
       containers:
         - name: acme-customers-dashboard
-          image: 'quay.io/dovid/simple-demo-webapp:amd64-2.6'
+          image: 'quay.io/dovid/simple-demo-webapp:amd64-2.8000000000000003'
 
           env:
           - name: CLUSTER_NAME
@@ -36,6 +38,10 @@ spec:
             mountPath: /var/www/html/config
           - name: ressources
             mountPath: /var/www/html/ressources
+
+          - name: app-data
+              mountPath: /var/www/html/data
+
       volumes:
         - name: simple-demo-webapp-config
           configMap:
@@ -43,6 +49,11 @@ spec:
         - name: ressources
           configMap:
             name: ressources-1
+
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: acme-shared-pvc
+
       restartPolicy: Always
   strategy:
     type: RollingUpdate
