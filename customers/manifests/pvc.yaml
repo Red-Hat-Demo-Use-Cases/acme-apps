@@ -2,9 +2,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: acme-shared-pvc
+  namespace: acme-customers
 spec:
   accessModes:
-    - ReadWriteMany # Use RWX if multiple pods need to write at once
+    # - ReadWriteMany # Use RWX if multiple pods need to write at once
+    - ReadWriteOnce # Use RWX if multiple pods need to write at once
   resources:
     requests:
       storage: 50Mi
