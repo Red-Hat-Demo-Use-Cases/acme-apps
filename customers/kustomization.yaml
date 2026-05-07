@@ -6,7 +6,7 @@ commonLabels:
 
 resources:
   - manifests/namespace.yaml
-  - manifests/pvc.yaml
+  # - manifests/pvc.yaml
   - manifests/deployment.yaml
   - manifests/config.yaml
 

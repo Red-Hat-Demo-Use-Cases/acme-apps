@@ -49,8 +49,7 @@ spec:
           configMap:
             name: ressources-1
         - name: app-data
-          persistentVolumeClaim:
-            claimName: acme-shared-pvc
+          emptyDir: {} # By default, uses node disk
 
       restartPolicy: Always
   strategy:
