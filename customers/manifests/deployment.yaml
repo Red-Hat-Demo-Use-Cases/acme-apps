@@ -49,8 +49,9 @@ spec:
           configMap:
             name: ressources-1
         - name: app-data
-          persistentVolumeClaim:
-            claimName: acme-shared-pvc
+          emptyDir: {}
+          # persistentVolumeClaim:
+          #   claimName: acme-shared-pvc
 
       restartPolicy: Always
   strategy:
