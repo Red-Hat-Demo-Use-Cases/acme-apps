@@ -113,7 +113,7 @@ metadata:
   annotations:
     haproxy.router.openshift.io/disable_keepalive: "true"
 spec:
-  host: acme-customers.openocean.dg-6036.com
+  host: dashboard.ocp.azure.dg-6036.com
   to:
     kind: Service
     name: acme-customers-dashboard
